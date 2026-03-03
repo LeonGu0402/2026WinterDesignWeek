@@ -7,7 +7,7 @@ public class BoxFollower : MonoBehaviour
 
     public float distanceFromCamera = 2f;
 
-    void LateUpdate()
+    void Update()
     {
         
         transform.position = cameraTransform.position + cameraTransform.forward * distanceFromCamera;
