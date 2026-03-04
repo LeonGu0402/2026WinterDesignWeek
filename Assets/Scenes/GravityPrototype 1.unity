@@ -1556,11 +1556,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 422402234798386096, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
       propertyPath: Up
-      value: 120
+      value: 321
       objectReference: {fileID: 0}
     - target: {fileID: 422402234798386096, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
       propertyPath: Down
-      value: 99
+      value: 322
       objectReference: {fileID: 0}
     - target: {fileID: 422402234798386096, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
       propertyPath: Left
@@ -1568,7 +1568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 422402234798386096, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
       propertyPath: Reset
-      value: 308
+      value: 99
       objectReference: {fileID: 0}
     - target: {fileID: 422402234798386096, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
       propertyPath: Right
