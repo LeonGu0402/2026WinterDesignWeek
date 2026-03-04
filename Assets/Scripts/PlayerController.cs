@@ -27,9 +27,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
         checkGrounded();
         Jump();
+    }
+
+    private void FixedUpdate()
+    {
+        
+        Move();
+
     }
 
     private void Move()
@@ -40,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
         Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-        transform.Translate(direction * moveSpeed * Time.deltaTime);
+        rb.MovePosition(transform.position + transform.TransformDirection(direction) * moveSpeed * Time.fixedDeltaTime);
 
     }
 
