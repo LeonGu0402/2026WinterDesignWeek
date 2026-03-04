@@ -752,27 +752,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 422402234798386096, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
       propertyPath: Up
-      value: 273
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 422402234798386096, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
       propertyPath: Down
-      value: 274
+      value: 99
       objectReference: {fileID: 0}
     - target: {fileID: 422402234798386096, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
       propertyPath: Left
-      value: 276
+      value: 113
       objectReference: {fileID: 0}
     - target: {fileID: 422402234798386096, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
       propertyPath: Reset
-      value: 122
+      value: 308
       objectReference: {fileID: 0}
     - target: {fileID: 422402234798386096, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
       propertyPath: Right
-      value: 275
+      value: 101
       objectReference: {fileID: 0}
     - target: {fileID: 422402234798386096, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
       propertyPath: Reverse
-      value: 120
+      value: 118
       objectReference: {fileID: 0}
     - target: {fileID: 4747606579042213920, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
       propertyPath: m_Layer
