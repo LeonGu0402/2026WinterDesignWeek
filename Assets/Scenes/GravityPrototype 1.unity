@@ -2146,7 +2146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 422402234798386096, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
       propertyPath: rotateSpeed
-      value: 5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 4747606579042213920, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
       propertyPath: m_Layer
@@ -2222,12 +2222,16 @@ PrefabInstance:
       objectReference: {fileID: 559969843}
     - target: {fileID: 9116579095092274116, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
       propertyPath: GroundedOffset
-      value: -0.5
+      value: -0.7
       objectReference: {fileID: 0}
     - target: {fileID: 9116579095092274116, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
       propertyPath: GroundedRadius
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 9116579095092274116, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
+      propertyPath: gravityController
+      value: 
+      objectReference: {fileID: 1192745007}
     - target: {fileID: 9116579095092274116, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
       propertyPath: GroundLayers.m_Bits
       value: 1

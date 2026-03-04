@@ -21,7 +21,9 @@ public class GravityController : MonoBehaviour
 
     public bool isShifting;
 
-    public float rotateSpeed = 1f; 
+    public float rotateSpeed = 1f;
+
+    private bool isGravityOrigin = false; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -58,11 +60,12 @@ public class GravityController : MonoBehaviour
 
     private Vector3 angle; 
 
-    private IEnumerator shifting(Vector3 targetDirection)
+    private IEnumerator shifting(Vector3 targetDirection, Vector3 gravityDirection)
     {
 
         float t = 0;
         isShifting = true;
+        isGravityOrigin = false; 
         Quaternion initialRotation = transform.rotation;
 
         while (t < 1f)
@@ -85,6 +88,7 @@ public class GravityController : MonoBehaviour
             yield return null;
         }
 
+        Physics.gravity = -transform.up * gravityConstant; 
         isShifting = false; 
 
     }
@@ -94,6 +98,9 @@ public class GravityController : MonoBehaviour
 
         if (Input.GetKeyDown(Reset))
         {
+            if (isGravityOrigin) return;
+
+            isGravityOrigin = true;
             Physics.gravity = Vector3.down * gravityConstant;
             StopAllCoroutines();
             isShifting = false;
@@ -106,44 +113,44 @@ public class GravityController : MonoBehaviour
         if (Input.GetKeyDown(Up))
         {
             angle = new Vector3(-90, 0, 0);
-            Physics.gravity = transform.forward * gravityConstant;
+            //Physics.gravity = transform.forward * gravityConstant;
             //transform.Rotate(angle);
-            StartCoroutine(shifting(angle));
+            StartCoroutine(shifting(angle, transform.forward));
 
         }
         else if (Input.GetKeyDown(Down))
         {
 
             angle = new Vector3(90, 0, 0);
-            Physics.gravity = -transform.forward * gravityConstant;
+            //Physics.gravity = -transform.forward * gravityConstant;
             //transform.Rotate(angle);
-            StartCoroutine(shifting(angle));
+            StartCoroutine(shifting(angle, -transform.forward));
 
         }
         else if (Input.GetKeyDown(Left))
         {
 
             angle = new Vector3(0, 0, -90);
-            Physics.gravity = -transform.right * gravityConstant;
+            //Physics.gravity = -transform.right * gravityConstant;
             //transform.Rotate(angle);
-            StartCoroutine(shifting(angle));
+            StartCoroutine(shifting(angle, -transform.right));
 
         }
         else if ( Input.GetKeyDown(Right))
         {
 
             angle = new Vector3(0, 0, 90);
-            Physics.gravity = transform.right * gravityConstant;
+            //Physics.gravity = transform.right * gravityConstant;
             //transform.Rotate(angle);
-            StartCoroutine(shifting(angle));
+            StartCoroutine(shifting(angle, transform.right));
         }
         else if (Input.GetKeyDown(Reverse))
         {
 
             angle = new Vector3(180, 0, 0);
-            Physics.gravity = transform.up * gravityConstant;
+            //Physics.gravity = transform.up * gravityConstant;
             //transform.Rotate(angle);
-            StartCoroutine(shifting(angle));
+            StartCoroutine(shifting(angle, transform.up));
         }
 
     }
