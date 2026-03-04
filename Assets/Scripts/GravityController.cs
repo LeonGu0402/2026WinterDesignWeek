@@ -21,15 +21,31 @@ public class GravityController : MonoBehaviour
 
     public bool isShifting;
 
-    public float rotateSpeed = 0f; 
+    public float rotateSpeed = 1f; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
         originalAngle = transform.eulerAngles;
+        originalRotation = transform.rotation;
         isShifting = false;
 
+    }
+
+    private IEnumerator shiftingToQuaternion(Quaternion finalRotation)
+    {
+        float t = 0f;
+        isShifting = true;
+        Quaternion initialRotation = transform.rotation;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime * rotateSpeed;
+            transform.rotation = Quaternion.Lerp(initialRotation, finalRotation, t);
+            yield return null;
+        }
+
+        isShifting = false;
     }
 
     // Update is called once per frame
@@ -76,6 +92,15 @@ public class GravityController : MonoBehaviour
     public void changeGravity()
     {
 
+        if (Input.GetKeyDown(Reset))
+        {
+            Physics.gravity = Vector3.down * gravityConstant;
+            StopAllCoroutines();
+            isShifting = false;
+            StartCoroutine(shiftingToQuaternion(Quaternion.Euler(originalAngle)));
+            return;
+        }
+
         if (isShifting) return;
 
         if (Input.GetKeyDown(Up))
@@ -119,14 +144,6 @@ public class GravityController : MonoBehaviour
             Physics.gravity = transform.up * gravityConstant;
             //transform.Rotate(angle);
             StartCoroutine(shifting(angle));
-        }
-        else if (Input.GetKeyDown(Reset))
-        {
-
-            Physics.gravity = Vector3.down * gravityConstant;
-            Quaternion originalAngle = originalRotation;
-            StartCoroutine(shifting(originalAngle.eulerAngles));
-
         }
 
     }
