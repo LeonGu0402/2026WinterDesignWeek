@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,11 +19,16 @@ public class GravityController : MonoBehaviour
     private Vector3 originalAngle; 
     private Quaternion originalRotation;
 
+    public bool isShifting;
+
+    public float rotateSpeed = 0f; 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
         originalAngle = transform.eulerAngles;
+        isShifting = false;
 
     }
 
@@ -36,15 +42,48 @@ public class GravityController : MonoBehaviour
 
     private Vector3 angle; 
 
+    private IEnumerator shifting(Vector3 targetDirection)
+    {
+
+        float t = 0;
+        isShifting = true;
+        Quaternion initialRotation = transform.rotation;
+
+        while (t < 1f)
+        {
+
+            t += Time.deltaTime * rotateSpeed;
+            transform.rotation = Quaternion.Lerp(initialRotation, initialRotation*Quaternion.Euler(targetDirection), t);
+            yield return null;
+
+        }
+
+        t = 0;
+        initialRotation = transform.rotation;
+        Quaternion finalDirection = Quaternion.Euler(Mathf.Round(transform.eulerAngles.x / 90f) * 90f, Mathf.Round(transform.eulerAngles.y / 90f) * 90f, Mathf.Round(transform.eulerAngles.z / 90f) * 90f);
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime * 10f; 
+            transform.rotation = Quaternion.Lerp(initialRotation, finalDirection, t);
+            yield return null;
+        }
+
+        isShifting = false; 
+
+    }
+
     public void changeGravity()
     {
+
+        if (isShifting) return;
 
         if (Input.GetKeyDown(Up))
         {
             angle = new Vector3(-90, 0, 0);
             Physics.gravity = transform.forward * gravityConstant;
-            transform.Rotate(angle);
-            transform.rotation = Quaternion.Euler(Mathf.Round(transform.eulerAngles.x / 90f) * 90f, Mathf.Round(transform.eulerAngles.y / 90f) * 90f, Mathf.Round(transform.eulerAngles.z / 90f) * 90f);
+            //transform.Rotate(angle);
+            StartCoroutine(shifting(angle));
 
         }
         else if (Input.GetKeyDown(Down))
@@ -52,8 +91,8 @@ public class GravityController : MonoBehaviour
 
             angle = new Vector3(90, 0, 0);
             Physics.gravity = -transform.forward * gravityConstant;
-            transform.Rotate(angle);
-            transform.rotation = Quaternion.Euler(Mathf.Round(transform.eulerAngles.x / 90f) * 90f, Mathf.Round(transform.eulerAngles.y / 90f) * 90f, Mathf.Round(transform.eulerAngles.z / 90f) * 90f);
+            //transform.Rotate(angle);
+            StartCoroutine(shifting(angle));
 
         }
         else if (Input.GetKeyDown(Left))
@@ -61,8 +100,8 @@ public class GravityController : MonoBehaviour
 
             angle = new Vector3(0, 0, -90);
             Physics.gravity = -transform.right * gravityConstant;
-            transform.Rotate(angle);
-            transform.rotation = Quaternion.Euler(Mathf.Round(transform.eulerAngles.x / 90f) * 90f, Mathf.Round(transform.eulerAngles.y / 90f) * 90f, Mathf.Round(transform.eulerAngles.z / 90f) * 90f);
+            //transform.Rotate(angle);
+            StartCoroutine(shifting(angle));
 
         }
         else if ( Input.GetKeyDown(Right))
@@ -70,25 +109,23 @@ public class GravityController : MonoBehaviour
 
             angle = new Vector3(0, 0, 90);
             Physics.gravity = transform.right * gravityConstant;
-            transform.Rotate(angle);
-            transform.rotation = Quaternion.Euler(Mathf.Round(transform.eulerAngles.x / 90f) * 90f, Mathf.Round(transform.eulerAngles.y / 90f) * 90f, Mathf.Round(transform.eulerAngles.z / 90f) * 90f);
-
+            //transform.Rotate(angle);
+            StartCoroutine(shifting(angle));
         }
         else if (Input.GetKeyDown(Reverse))
         {
 
             angle = new Vector3(180, 0, 0);
             Physics.gravity = transform.up * gravityConstant;
-            transform.Rotate(angle);
-            transform.rotation = Quaternion.Euler(Mathf.Round(transform.eulerAngles.x / 90f) * 90f, Mathf.Round(transform.eulerAngles.y / 90f) * 90f, Mathf.Round(transform.eulerAngles.z / 90f) * 90f);
-
+            //transform.Rotate(angle);
+            StartCoroutine(shifting(angle));
         }
         else if (Input.GetKeyDown(Reset))
         {
 
             Physics.gravity = Vector3.down * gravityConstant;
-            transform.rotation = originalRotation;
-            transform.rotation = Quaternion.Euler(Mathf.Round(transform.eulerAngles.x / 90f) * 90f, Mathf.Round(transform.eulerAngles.y / 90f) * 90f, Mathf.Round(transform.eulerAngles.z / 90f) * 90f);
+            Quaternion originalAngle = originalRotation;
+            StartCoroutine(shifting(originalAngle.eulerAngles));
 
         }
 
