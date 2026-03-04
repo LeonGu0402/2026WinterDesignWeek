@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
+    private float originalMoveSpeed; 
 
     public bool grounded; 
     public float GroundedRadius;
@@ -11,28 +12,41 @@ public class PlayerController : MonoBehaviour
 
     public Transform capsuleTrans; 
 
+    public GravityController gravityController;
+    public Rigidbody rb; 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
+        originalMoveSpeed = moveSpeed;
+        rb = GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
         checkGrounded();
         Jump();
+    }
+
+    private void FixedUpdate()
+    {
+        
+        Move();
+
     }
 
     private void Move()
     {
 
+        if (gravityController.isShifting) rb.constraints = RigidbodyConstraints.FreezePosition; 
+        else rb.constraints = RigidbodyConstraints.FreezeRotation;
+
         Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-        transform.Translate(direction * moveSpeed * Time.deltaTime);
-
-        
+        rb.MovePosition(transform.position + transform.TransformDirection(direction) * moveSpeed * Time.fixedDeltaTime);
 
     }
 
