@@ -5,12 +5,17 @@ public class BoxFollower : MonoBehaviour
     public Transform cameraTransform;
     public Transform roomTransform;
 
-    public float distanceFromCamera = 2f;
+    public Vector3 localPositionInCamera = new Vector3(0f, 0f, 2f);
 
-    void Update()
+    void Start()
     {
-        
-        transform.position = cameraTransform.position + cameraTransform.forward * distanceFromCamera;
+        localPositionInCamera = transform.position - cameraTransform.position;
+    }
+
+    void LateUpdate()
+    {
+
+        transform.position = cameraTransform.position + cameraTransform.rotation * localPositionInCamera;
 
         transform.rotation = roomTransform.rotation;
     }
