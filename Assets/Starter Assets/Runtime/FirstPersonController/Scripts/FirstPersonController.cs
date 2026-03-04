@@ -138,8 +138,30 @@ namespace StarterAssets
 
         private void GroundedCheck()
         {
-            // set sphere position, with offset
             Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
+
+            // set sphere position, with offset
+            if (bottomGravity)
+            {
+                spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
+
+            }
+            else if (topGravity)
+            {
+                spherePosition = new Vector3(transform.position.x, transform.position.y + GroundedOffset, transform.position.z);
+
+            }
+            else if (leftGravity)
+            {
+                spherePosition = new Vector3(transform.position.x - GroundedOffset, transform.position.y, transform.position.z);
+
+
+            }
+            else if (rightGravity)
+            {
+                spherePosition = new Vector3(transform.position.x + GroundedOffset, transform.position.y, transform.position.z);
+
+            }
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
         }
 
@@ -261,14 +283,12 @@ namespace StarterAssets
             else if (leftGravity)
             {
 
-                //inputDirection = new Vector3(_input.move.x, _input.move.y, 0).normalized;
                 _controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(_verticalVelocity, 0.0f, 0.0f) * Time.deltaTime);
 
             }
             else if (rightGravity)
             {
 
-                //inputDirection = new Vector3(_input.move.x, _input.move.y, 0).normalized;
                 _controller.Move(inputDirection.normalized * (_speed * Time.deltaTime) + new Vector3(-_verticalVelocity, 0.0f, 0.0f) * Time.deltaTime);
 
             }
@@ -396,7 +416,7 @@ namespace StarterAssets
             }
             else if (rightGravity)
             {
-                Gizmos.DrawSphere(new Vector3(transform.position.x + GroundedOffset, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
+                Gizmos.DrawSphere(new Vector3(transform.position.x + GroundedOffset, transform.position.y, transform.position.z), GroundedRadius);
 
             }
 
