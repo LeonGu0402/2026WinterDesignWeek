@@ -5,6 +5,11 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
 
     public bool grounded; 
+    public float GroundedRadius;
+    public float GroundedOffset;    
+    public LayerMask GroundLayers;
+
+    public Transform capsuleTrans; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,21 +39,23 @@ public class PlayerController : MonoBehaviour
     private void checkGrounded()
     {
 
-        RaycastHit hit;
-        Vector3 direction = Vector3.down;
+        Vector3 spherePosition = capsuleTrans.position + capsuleTrans.up * GroundedOffset;
+        print(spherePosition);
+        grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);        
 
-        if (Physics.Raycast(transform.position, direction, out hit, 2f))
-        {
+    }
 
-            grounded = true;
-
+    private void OnDrawGizmosSelected()
+    {
+        if (grounded) {
+            Gizmos.color = Color.red;
         }
         else
         {
-            grounded = false;
-
+            Gizmos.color = Color.green;
         }
-
+        Vector3 spherePosition = capsuleTrans.position + capsuleTrans.up * GroundedOffset;
+        Gizmos.DrawSphere(spherePosition, GroundedRadius);
     }
 
     private void Jump()
@@ -61,7 +68,12 @@ public class PlayerController : MonoBehaviour
             {
 
                 Rigidbody rb = GetComponent<Rigidbody>();
-                rb.AddForce(Vector3.up * 5f, ForceMode.Impulse);
+
+                Vector3 forceDirection = transform.TransformDirection(Vector3.up);
+
+                print(forceDirection);
+
+                rb.AddForce(forceDirection * 5f, ForceMode.Impulse);
 
             }
 

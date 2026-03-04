@@ -119,43 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &108868124 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8274603005879228699, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
-  m_PrefabInstance: {fileID: 951060835}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &108868126 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7121784699264008286, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
   m_PrefabInstance: {fileID: 951060835}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &108868127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 108868124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38cf447b71c50ce4ebd2c509e899e9d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  grounded: 0
---- !u!114 &108868128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 108868124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8123946f2339f9648ba4688bb33ef982, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gravityConstant: 9.8
 --- !u!1 &203844586
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,13 +416,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7121784699264008286, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 961739753}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8274603005879228699, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 108868128}
-    - targetCorrespondingSourceObject: {fileID: 8274603005879228699, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 108868127}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
 --- !u!1 &961739749
 GameObject:
