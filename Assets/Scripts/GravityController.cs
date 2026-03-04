@@ -5,8 +5,8 @@ using UnityEngine.InputSystem;
 public class GravityController : MonoBehaviour
 {
     [Header("Input Option")]
-    public KeyCode Up;
-    public KeyCode Down;
+    //private KeyCode Up;
+    //private KeyCode Down;
     public KeyCode Left;
     public KeyCode Right;
     public KeyCode Reverse;
@@ -28,6 +28,7 @@ public class GravityController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
         originalAngle = transform.eulerAngles;
         originalRotation = transform.rotation;
         isShifting = false;
@@ -110,7 +111,7 @@ public class GravityController : MonoBehaviour
 
         if (isShifting) return;
 
-        if (Input.GetKeyDown(Up))
+        if (Input.mouseScrollDelta.y > 0)
         {
             angle = new Vector3(-90, 0, 0);
             //Physics.gravity = transform.forward * gravityConstant;
@@ -118,7 +119,7 @@ public class GravityController : MonoBehaviour
             StartCoroutine(shifting(angle, transform.forward));
 
         }
-        else if (Input.GetKeyDown(Down))
+        else if (Input.mouseScrollDelta.y < 0)
         {
 
             angle = new Vector3(90, 0, 0);
