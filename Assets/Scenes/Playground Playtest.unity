@@ -3049,6 +3049,14 @@ PrefabInstance:
       propertyPath: rb
       value: 
       objectReference: {fileID: 116757564}
+    - target: {fileID: 9116579095092274116, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
+      propertyPath: jumpForce
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9116579095092274116, guid: db6db4b444327294cbb85985f7cb8d1f, type: 3}
+      propertyPath: moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

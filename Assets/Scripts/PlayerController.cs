@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
+    public float jumpForce; 
     private float originalMoveSpeed; 
 
     public bool grounded; 
@@ -87,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
                 print(forceDirection);
 
-                rb.AddForce(forceDirection * 5f, ForceMode.Impulse);
+                rb.AddForce(forceDirection * jumpForce, ForceMode.Impulse);
 
             }
 
