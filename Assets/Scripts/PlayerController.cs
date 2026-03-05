@@ -11,10 +11,12 @@ public class PlayerController : MonoBehaviour
     public float GroundedOffset;    
     public LayerMask GroundLayers;
 
-    public Transform capsuleTrans; 
+    public Transform capsuleTrans;
+    public Animator charAnimator;
 
     public GravityController gravityController;
-    public Rigidbody rb; 
+    public Rigidbody rb;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -49,6 +51,15 @@ public class PlayerController : MonoBehaviour
 
         rb.MovePosition(transform.position + transform.TransformDirection(direction) * moveSpeed * Time.fixedDeltaTime);
 
+        if (direction == Vector3.zero)
+        {
+            charAnimator.SetBool("Walk", false);
+        }
+        else
+        {
+            charAnimator.SetBool("Walk", true);
+        }
+
     }
 
     private void checkGrounded()
@@ -56,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
         Vector3 spherePosition = capsuleTrans.position + capsuleTrans.up * GroundedOffset;
         print(spherePosition);
-        grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);        
+        grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
 
     }
 
@@ -92,7 +103,12 @@ public class PlayerController : MonoBehaviour
 
             }
 
+            
+
         }
+
+
+
 
     }
 
