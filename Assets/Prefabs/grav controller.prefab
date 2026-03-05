@@ -68,6 +68,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: grav controller
       objectReference: {fileID: 0}
+    - target: {fileID: 3316992658331686828, guid: 51af8e0f91acf574696757cf34ea6cf7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.994
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316992658331686828, guid: 51af8e0f91acf574696757cf34ea6cf7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.932
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316992658331686828, guid: 51af8e0f91acf574696757cf34ea6cf7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.287
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316992658331686828, guid: 51af8e0f91acf574696757cf34ea6cf7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316992658331686828, guid: 51af8e0f91acf574696757cf34ea6cf7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316992658331686828, guid: 51af8e0f91acf574696757cf34ea6cf7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083501151425157549, guid: 51af8e0f91acf574696757cf34ea6cf7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 66.977
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083501151425157549, guid: 51af8e0f91acf574696757cf34ea6cf7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632055958874330854, guid: 51af8e0f91acf574696757cf34ea6cf7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
