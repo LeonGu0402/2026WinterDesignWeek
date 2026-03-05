@@ -25,6 +25,8 @@ public class GravityController : MonoBehaviour
 
     private bool isGravityOrigin = false; 
 
+    public PlayerController controller;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -68,7 +70,7 @@ public class GravityController : MonoBehaviour
         isShifting = true;
         isGravityOrigin = false; 
         Quaternion initialRotation = transform.rotation;
-
+       
         while (t < 1f)
         {
 
@@ -110,6 +112,7 @@ public class GravityController : MonoBehaviour
         }
 
         if (isShifting) return;
+        if (!controller.grounded) return;
 
         if (Input.mouseScrollDelta.y > 0)
         {
